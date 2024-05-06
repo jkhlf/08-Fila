@@ -77,7 +77,6 @@ void inicializar()
 
 void insere()
 {
-	// aloca memoria dinamicamente para o novo elemento
 	NO* novo = (NO*)malloc(sizeof(NO));
 	if (novo == NULL)
 	{
@@ -87,14 +86,34 @@ void insere()
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
+	if (inicio == NULL)
+	{
+		inicio = novo;
+		fim = novo;
+	}
+	else
+	{
+		fim->prox = novo;
+		fim = novo;
+	}
 
-
+	cout << "Elemento inserido com sucesso.\n";
 }
+
 
 void remove()
 {
+	if (inicio == NULL)
+	{
+		cout << "Fila Vazia.\n";
+		return;
+	}
 
+	NO* removido = inicio;
+	inicio = inicio->prox;
 
+	cout << "Elemento removido: " << removido->valor << endl;
 
+	delete removido;
 }
 
